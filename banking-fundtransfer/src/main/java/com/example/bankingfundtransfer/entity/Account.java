@@ -1,6 +1,9 @@
 package com.example.bankingfundtransfer.entity;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "accounts")
 
@@ -13,7 +16,7 @@ public class Account {
     private String accountNumber;
 
     @Column(nullable = false)
-    private Double balance;
+    private BigDecimal balance;
 
     @Column(nullable = false)
     private String accountType; // SAVINGS, CURRENT
@@ -22,20 +25,23 @@ public class Account {
     private String status; // ACTIVE, INACTIVE
 
     @Column(nullable = false)
-    private String creationDate;
+    private LocalDateTime creationDate;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+
+    @Version
+    private Long version;
 
 
     // No-arg constructor
     public Account() {}
 
     // All-arg constructor
-    public Account(String accountNumber, Double balance,
+    public Account(String accountNumber, BigDecimal balance,
                    String accountType, String status,
-                   String creationDate, Customer customer) {
+                   LocalDateTime creationDate, Customer customer) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.accountType = accountType;
@@ -68,11 +74,11 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public Double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
@@ -84,11 +90,11 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public String getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -99,4 +105,17 @@ public class Account {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", balance=" + balance +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
+
 }

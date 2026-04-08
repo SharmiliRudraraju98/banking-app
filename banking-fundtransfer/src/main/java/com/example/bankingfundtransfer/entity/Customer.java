@@ -1,5 +1,6 @@
 package com.example.bankingfundtransfer.entity;
 import jakarta.persistence.*;
+
 //import org.springframework.data.annotation.Id;
 //import lombok.Data;
 //
@@ -17,7 +18,7 @@ public class Customer {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
 
@@ -87,4 +88,22 @@ public class Customer {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", addressLine1=" +  addressLine1+
+                ", addressLine2='" + addressLine2 +
+                ", email='" + email +
+                ", country='" + country +
+                '\'' +
+
+
+                '}';
+    }
+
+
+
 }
