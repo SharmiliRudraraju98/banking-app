@@ -1,10 +1,23 @@
 package com.example.bankingfundtransfer.dto;
 
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class CustomerRequestDTO {
+    @NotBlank(message = "Name is required")
     private String name;
+
+    @Email(message = "Invalid email format")
+    @NotBlank(message = "Email is required")
     private String email;
+
+    @NotBlank(message = "Address is required")
     private String addressLine1;
-    private String addressLine2;
+
+    private String addressLine2; // optional, no validation needed
+
+    @NotBlank(message = "Country is required")
     private String country;
 
     public CustomerRequestDTO() {}
