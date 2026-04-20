@@ -1,3 +1,26 @@
 spring:
   application:
     name: banking-fundtransfer
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bankingdb
+    username: banking
+    password: banking123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
